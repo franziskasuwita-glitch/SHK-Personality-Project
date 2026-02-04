@@ -1,14 +1,6 @@
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 
-"""
-ITEM AUGMENTATION TOOL - PSYCHOMETRIC RESEARCH
-==============================================
-Dieses Skript dient der automatisierten Augmentierung psychologischer Items.
-Ziel ist es, durch semantische Umformulierungen (mittels GPT-4o-mini) die 
-Wortanzahl pro Item-Block zu standardisieren, um stabilere Embeddings zu erhalten.
-"""
-
 import os
 import time
 import openai
