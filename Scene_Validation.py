@@ -1,9 +1,3 @@
-# ============================================================================
-# SEMANTISCHE VALIDIERUNGSANALYSE DER STIMULI (SBERT-BASIERT)
-# ============================================================================
-# Dieses Skript evaluiert die Konstruktvalidität generierter Szenen mittels
-# Cosinus-Ähnlichkeit im Vergleich zu theoretischen Facetten-Definitionen.
-
 import os
 import numpy as np
 import pandas as pd
