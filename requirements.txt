@@ -1,0 +1,9 @@
+sentence-transformers
+openai
+google-generativeai
+pandas
+numpy
+matplotlib
+seaborn
+scikit-learn
+langdetect
