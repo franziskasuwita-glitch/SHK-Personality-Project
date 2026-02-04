@@ -1,0 +1,91 @@
+# ============================================================================
+# SEMANTISCHE VALIDIERUNGSANALYSE DER STIMULI (SBERT-BASIERT)
+# ============================================================================
+# Dieses Skript evaluiert die Konstruktvalidität generierter Szenen mittels
+# Cosinus-Ähnlichkeit im Vergleich zu theoretischen Facetten-Definitionen.
+
+import os
+import numpy as np
+import pandas as pd
+import matplotlib.pyplot as plt
+import seaborn as sns
+from sentence_transformers import SentenceTransformer
+from sklearn.metrics.pairwise import cosine_similarity
+
+# Verhindert GUI-Fehler bei Ausführung in Umgebungen ohne Display
+import matplotlib
+matplotlib.use('Agg') 
+
+# ============================================================================
+# DATENGRUNDLAGE: SZENEN UND DEFINITIONEN
+# ============================================================================
+
+# Facette: Lack of Premeditation (Mangelnde Voraussicht)
+premeditation_scenes = {
+    "P_182": "Gerade sehe ich online ein unschlagbares Angebot für einen Kurztrip...",
+    "P_007": "Ein kurzer Adrenalinkick schießt durch mich, als ich den steilen Abhang...",
+    "P_012": "Meine Kollegin erzählt mir voller Stolz von ihrer neuen Projektidee...",
+    "P_198": "Als mein Chef mich heute Morgen kritisierte, bin ich einfach aufgestanden...",
+    "P_036": "Im Streit mit einem Freund tippe ich wütend eine lange Nachricht...",
+    "P_112": "Als eine enge Freundin anruft erzählt sie mir von ihrem stressigen Tag..."
+}
+
+# Facette: Lack of Perseverance (Mangelndes Durchhaltevermögen)
+perseverance_scenes = {
+    "V_009": "Voller Begeisterung erstelle ich eine Chat-Gruppe für das große Grillfest...",
+    "V_078": "Die Reparatur der Wasserleitung ist komplizierter, als ich dachte...",
+    "V_175": "Ich sitze am Schreibtisch und starre auf die halbfertige Präsentation...",
+    "V_176": "Ich sitze vor meinem Laptop und starre auf den Online-Kurs...",
+    "V_027": "Die Planung für das Nachbarschaftsfest zieht sich und ich merke...",
+    "V_026": "Ich lasse die angefangene Bewerbung seit Wochen auf meinem Desktop liegen..."
+}
+
+# Theoretische Definitionen (Referenzanker)
+definitions = {
+    "Premeditation": "Verhalten, charakterisiert durch wenig oder keine vorausschauende Planung, Reflexion oder Berücksichtigung der Folgen einer Handlung, insbesondere einer, die das Eingehen von Risiken beinhaltet.",
+    "Perseverance": "Unfähigkeit, Projekte abzuschließen und unter Bedingungen zu arbeiten, die Widerstandsfähigkeit gegenüber Hindernissen und ablenkenden Reizen erfordern."
+}
+
+# ============================================================================
+# ANALYSE-ROUTINE
+# ============================================================================
+
+def run_validation():
+    print("--- Initialisierung der SBERT-Validierung ---")
+    model = SentenceTransformer('paraphrase-multilingual-MiniLM-L12-v2')
+    
+    # 1. Feature Extraktion (Embeddings)
+    print("Extrahiere semantische Vektoren...")
+    emb_premed = model.encode(list(premeditation_scenes.values()))
+    emb_persev = model.encode(list(perseverance_scenes.values()))
+    emb_def_premed = model.encode([definitions["Premeditation"]])
+    emb_def_persev = model.encode([definitions["Perseverance"]])
+
+    # 2. Berechnung der Ähnlichkeitsmatrizen
+    sim_matrix_premed = cosine_similarity(emb_premed)
+    sim_matrix_persev = cosine_similarity(emb_persev)
+
+    # 3. Visualisierung: Inter-Item-Ähnlichkeit
+    plt.figure(figsize=(12, 5))
+    plt.subplot(1, 2, 1)
+    sns.heatmap(sim_matrix_premed, annot=True, cmap='YlGnBu', vmin=0, vmax=1)
+    plt.title("Kohäsion: Mangelnde Voraussicht")
+    
+    plt.subplot(1, 2, 2)
+    sns.heatmap(sim_matrix_persev, annot=True, cmap='YlGnBu', vmin=0, vmax=1)
+    plt.title("Kohäsion: Mangelndes Durchhaltevermögen")
+    
+    plt.tight_layout()
+    plt.savefig('cohesion_analysis.png')
+    print("Grafik gespeichert: cohesion_analysis.png")
+
+    # 4. Konstrukt-Validität (Szenen vs. Definitionen)
+    validity_premed = cosine_similarity(emb_premed, emb_def_premed)
+    validity_persev = cosine_similarity(emb_persev, emb_def_persev)
+
+    print("\n--- Validitätsergebnisse (Mittelwerte) ---")
+    print(f"Konvergenz Voraussicht: {np.mean(validity_premed):.4f}")
+    print(f"Konvergenz Durchhaltevermögen: {np.mean(validity_persev):.4f}")
+
+if __name__ == "__main__":
+    run_validation()
