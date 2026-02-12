@@ -4,13 +4,13 @@ Dieses Projekt dokumentiert den vollständigen Prozess von der Vorbereitung psyc
 Projektübersicht
 Die Pipeline ist in vier aufeinanderfolgende Phasen unterteilt:
 
-    Item-Augmentierung: Standardisierung der Textlänge zur Optimierung von SBERT-Embeddings.
+    Item-Augmentation: Vermehrung der  Items und anschließende Mittelung der Embeddings zur Stabilisierung von SBERT-Embeddings.
 
     Item-Ähnlichkeitsanalyse: Validierung der Konstruktkohäsion der Original-Items.
 
-    Szenengenerierung: KI-gestützte Erstellung von narrativen Stimuli mit integrierter Validierungsschleife.
+    Szenengenerierung: KI-gestützte Erstellung von narrativen Szenen mit integrierter Validierungsschleife.
 
-    Szenen-Validierung: Statistische Überprüfung der finalen Stimuli auf konvergente und diskriminante Validität.
+    Szenen-Validierung: Statistische Überprüfung der finalen Szenen auf konvergente und diskriminante Validität.
 
 Installation & Setup
 
