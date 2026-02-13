@@ -56,9 +56,9 @@ scenes_info = [
     {"item_number": 175, "item_description": "Ich kann Ziele nicht erreichen, weil andere Dinge meine Aufmerksamkeit auf sich ziehen.", "subfacet": "Mangelndes Durchhaltevermögen"},
     {"item_number": 198, "item_description": "Ich habe die Konsequenzen einer Handlung nicht bedacht.", "subfacet": "Mangelnde Voraussicht"},
     {"item_number": 176, "item_description": "Ich habe Schwierigkeiten, bestimmte Ziele zu verfolgen, selbst über kurze Zeiträume.", "subfacet": "Mangelndes Durchhaltevermögen"},
-    {"item_number": 5, "item_description": "Gelegentlich handele ich zuerst und denke dann erst darüber nach.", "subfacet": "Mangelnde Voraussicht"},
+    {"item_number": 36, "item_description": "Gelegentlich handele ich zuerst und denke dann erst darüber nach.", "subfacet": "Mangelnde Voraussicht"},
     {"item_number": 27, "item_description": "Wenn ich einmal mit etwas angefangen habe, höre ich leicht wieder auf.", "subfacet": "Mangelndes Durchhaltevermögen"},
-    {"item_number": 6, "item_description": "Ich handele oft aus dem Augenblick heraus.", "subfacet": "Mangelnde Voraussicht"},
+    {"item_number": 112, "item_description": "Ich handele oft aus dem Augenblick heraus.", "subfacet": "Mangelnde Voraussicht"},
     {"item_number": 26, "item_description": "Es macht mir nichts aus, wenn Aufgaben unerledigt bleiben.", "subfacet": "Mangelndes Durchhaltevermögen"}
 ]
 
