@@ -1,3 +1,4 @@
+
 #!/usr/bin/env python
 # -*- coding: utf-8 -*-
 ## TEST Item Selection
@@ -409,5 +410,5 @@ def main(filepath, output_dir='output', pdf_file='results.pdf'):
 
 if __name__ == '__main__':
     # Dateipfad hier definieren oder als Argument an main übergeben
-    filepath = '/content/augmentierteitemsohnewiederholungen130925.txt'
+    filepath = '/content/augmenteditems.txt'
     main(filepath, output_dir='output')
